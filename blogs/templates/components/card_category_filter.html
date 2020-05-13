@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Categories</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for category in categories %}
+        <li class="list-group-item">
+            <a href="{% url 'blogs:filter' category.pk %}" class="text-decoration-none">
+                <span class="badge badge-primary">{{ category.total_posts }}</span>
+                {{ category.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

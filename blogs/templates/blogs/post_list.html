@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load category_tags %}
+
+{% block title %}Post List{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-md-9">
+                {% for post in posts %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{ post.author|capfirst }}, {{ post.created }}
+                            <span class="badge badge-secondary">
+                                <a href="{% url 'blogs:filter' post.category.id %}"
+                                   class="text-decoration-none text-white">
+                                    {{ post.category }}
+                                </a>
+                            </span>
+                        </h6>
+                        <p class="card-text">
+                            {{ post.body|truncatewords:30 }}
+                        </p>
+                        <a href="{% url 'blogs:detail' post.id %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% include 'components/pagination.html' with objs=posts %}
+            </div>
+            <div class="col-md-3">
+                {% card_category_filter %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

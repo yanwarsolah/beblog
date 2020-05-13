@@ -1,0 +1,17 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'bs/css/bootstrap.min.css' %}">
+    <title>{% block title %}Title{% endblock %}</title>
+</head>
+<body>
+    {% include 'components/header.html' %}
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'bs/js/bootstrap.min.js' %}" ></script>
+</body>
+</html>
